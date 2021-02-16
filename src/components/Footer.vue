@@ -9,4 +9,9 @@ export default {};
 </script>
 
 <style lang="scss" scoped>
+footer {
+  img {
+    margin-bottom: -6px;
+  }
+}
 </style>
