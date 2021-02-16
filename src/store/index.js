@@ -10,8 +10,10 @@ export default new Vuex.Store({
    mutations: {},
    actions: {
       getCoffee(context) {
-         DATA.fetchProducts().forEach((r) => context.state.coffeeMenu.push(r));
-         console.log(JSON.parse(JSON.stringify(context.state.coffeeMenu)));
+         setTimeout(() => {
+            DATA.fetchProducts().forEach((r) => context.state.coffeeMenu.push(r));
+            console.log(JSON.parse(JSON.stringify(context.state.coffeeMenu)));
+         }, 400);
       },
    },
 });

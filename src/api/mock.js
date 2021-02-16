@@ -1,7 +1,6 @@
 import * as MOCK from "./menu.json";
 export function fetchProducts() {
    return MOCK.menu;
-
    // Resolve the products from menu.json after a random timer
 }
 
