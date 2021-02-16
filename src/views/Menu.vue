@@ -2,35 +2,18 @@
   <div class="menu">
     <!-- <NavigationBar/> -->
     <img src="../assets/graphics-header.svg" alt="header-img" />
-    <div class="content">
-      <h1>Menu</h1>
-      <ul>
-        <li v-for="(item, index) in Coffee" :key="index">
-          <div class="addCoffee">
-            <img src="../assets/add.svg" alt="add-butt" />
-            <div class="coffee">
-              <div class="coffee-title">
-                <h3>{{ item.title }}</h3>
-                <p>{{ item.desc }}</p>
-              </div>
-              <div class="coffee-price">
-                <h3>{{ item.price }} SEK</h3>
-              </div>
-            </div>
-          </div>
-        </li>
-      </ul>
-      <button @click="getCoffee">Click!</button>
-    </div>
+    <Menu />
     <Footer />
   </div>
 </template>
 
 <script>
 import Footer from "@/components/Footer";
+import Menu from "@/components/Menu";
 export default {
   components: {
     Footer,
+    Menu,
   },
   methods: {
     getCoffee() {
