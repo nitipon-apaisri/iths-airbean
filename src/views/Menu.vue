@@ -63,6 +63,7 @@ export default {
             background-color: #000;
             border-radius: 100%;
             padding: 8px;
+            cursor: pointer;
           }
           .coffee {
             width: 100%;
