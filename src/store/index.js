@@ -6,12 +6,29 @@ Vue.use(Vuex);
 export default new Vuex.Store({
    state: {
       coffeeMenu: [],
+      loader: false,
+      users: [],
    },
-   mutations: {},
+   mutations: {
+      register(state, query) {
+         let user = new Object();
+         user.name = query.name;
+         user.email = query.email;
+         setTimeout(() => {
+            user.id = Date.now();
+            state.users.push(user);
+            localStorage.setItem("users", JSON.stringify(state.users));
+         }, 100);
+      },
+   },
    actions: {
       getCoffee(context) {
+         context.state.coffeeMenu = [];
          DATA.fetchProducts().forEach((r) => context.state.coffeeMenu.push(r));
          console.log(JSON.parse(JSON.stringify(context.state.coffeeMenu)));
+      },
+      register({ commit }, query) {
+         commit("register", query);
       },
    },
 });

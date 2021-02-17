@@ -1,13 +1,15 @@
 import * as MOCK from "./menu.json";
 export function fetchProducts() {
    return MOCK.menu;
-
    // Resolve the products from menu.json after a random timer
 }
-
-// export async function registerUser(name, email) {
-//    // Resolve a random generated ID after a random timer
-//    // Persist user in localStorage
+// export function registerUser(name, email) {
+//    let user = new Object();
+//    user.id = Date.now();
+//    user.name = name;
+//    user.email = email;
+//    console.log(user);
+//    return user;
 // }
 
 // export async function makeOrder(userId, cardItems) {
