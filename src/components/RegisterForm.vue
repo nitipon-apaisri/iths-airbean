@@ -9,6 +9,7 @@
         </p>
       </div>
       <form @submit.prevent="send">
+        <p v-if="validate">Please fill input</p>
         <div class="name">
           <label for="name">Name</label>
           <input
@@ -17,6 +18,7 @@
             id="name"
             placeholder="Full name"
             autocomplete="on"
+            v-model="user.name"
           />
         </div>
         <div class="email">
@@ -27,13 +29,16 @@
             id="email"
             placeholder="E-mail"
             autocomplete="on"
+            v-model="user.email"
           />
         </div>
         <div class="gdpr">
-          <input type="radio" name="gdpr" id="gdpr" />
+          <input type="checkbox" name="gdpr" id="gdpr" v-model="gdpr" />
           <p>GDPR Ok!</p>
         </div>
-        <button>Brew me a cup !</button>
+        <button :disabled="!gdpr" :class="{ active: gdpr }">
+          Brew me a cup !
+        </button>
       </form>
     </div>
   </div>
@@ -41,9 +46,28 @@
 
 <script>
 export default {
+  data() {
+    return {
+      user: {
+        name: "",
+        email: "",
+      },
+      gdpr: false,
+      validate: false,
+    };
+  },
   methods: {
     send() {
-      console.log("Send!");
+      if (this.user.name.length == 0 || this.user.email.length == 0) {
+        this.validate = true;
+        this.gdpr = false;
+      } else {
+        this.$store.dispatch("register", this.user);
+        this.user.name = "";
+        this.user.email = "";
+        this.gdpr = false;
+        this.validate = false;
+      }
     },
   },
 };
@@ -120,6 +144,10 @@ export default {
         border-radius: 32px;
         font-weight: bold;
         font-size: 1.3rem;
+      }
+      .active {
+        cursor: pointer;
+        background-color: #17b978;
       }
     }
   }

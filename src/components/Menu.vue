@@ -1,6 +1,7 @@
 <template>
   <div class="content">
     <h1>Menu</h1>
+    <img src="../assets/loader.png" alt="loader" v-if="loader" />
     <ul>
       <li v-for="(item, index) in Coffee" :key="index">
         <div class="addCoffee">
@@ -23,9 +24,18 @@
 
 <script>
 export default {
+  data() {
+    return {
+      loader: false,
+    };
+  },
   methods: {
     getCoffee() {
-      this.$store.dispatch("getCoffee");
+      this.loader = true;
+      setTimeout(() => {
+        this.$store.dispatch("getCoffee");
+        this.loader = false;
+      }, 300);
     },
   },
   computed: {
