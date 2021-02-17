@@ -1,17 +1,19 @@
 <template>
   <div class="menu">
     <!-- <NavigationBar/> -->
-    <img src="../assets/graphics-header.svg" alt="header-img" />
+    <Header />
     <Menu />
     <Footer />
   </div>
 </template>
 
 <script>
+import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Menu from "@/components/Menu";
 export default {
   components: {
+    Header,
     Footer,
     Menu,
   },

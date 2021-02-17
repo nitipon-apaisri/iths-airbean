@@ -8,6 +8,7 @@ export default new Vuex.Store({
       coffeeMenu: [],
       loader: false,
       users: [],
+      order: [],
    },
    mutations: {
       register(state, query) {
@@ -20,15 +21,26 @@ export default new Vuex.Store({
             localStorage.setItem("users", JSON.stringify(state.users));
          }, 100);
       },
+      makeOrderCoffee(state, index) {
+         let order = new Object();
+         order.name = state.coffeeMenu[index].title;
+         order.price = state.coffeeMenu[index].price;
+         order.total = 1;
+         console.log(order);
+      },
    },
    actions: {
-      getCoffee(context) {
-         context.state.coffeeMenu = [];
-         DATA.fetchProducts().forEach((r) => context.state.coffeeMenu.push(r));
-         console.log(JSON.parse(JSON.stringify(context.state.coffeeMenu)));
+      getCoffee({ state }) {
+         state.coffeeMenu = [];
+         DATA.fetchProducts().forEach((r) => state.coffeeMenu.push(r));
+         console.log(JSON.parse(JSON.stringify(state.coffeeMenu)));
       },
       register({ commit }, query) {
+         // DATA.registerUser(query.name, query.email);
          commit("register", query);
+      },
+      orderCoffee({ commit }, index) {
+         commit("makeOrderCoffee", index);
       },
    },
 });
