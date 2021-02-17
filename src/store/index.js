@@ -26,7 +26,7 @@ export default new Vuex.Store({
          order.name = state.coffeeMenu[index].title;
          order.price = state.coffeeMenu[index].price;
          order.total = 1;
-         console.log(order);
+         state.order.push(order);
       },
    },
    actions: {
@@ -41,6 +41,13 @@ export default new Vuex.Store({
       },
       orderCoffee({ commit }, index) {
          commit("makeOrderCoffee", index);
+      },
+   },
+   getters: {
+      order(state) {
+         let uniq = {};
+         let filterArr = state.order.filter((obj) => !uniq[obj.name] && (uniq[obj.name] = true));
+         return filterArr;
       },
    },
 });
