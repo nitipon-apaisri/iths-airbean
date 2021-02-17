@@ -42,6 +42,7 @@ export default new Vuex.Store({
       orderCoffee({ commit }, index) {
          commit("makeOrderCoffee", index);
       },
+      increaseOrder() {},
    },
    getters: {
       order(state) {

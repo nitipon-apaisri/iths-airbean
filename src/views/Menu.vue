@@ -1,19 +1,19 @@
 <template>
   <div class="menu">
     <!-- <NavigationBar/> -->
-    <Header />
+    <HeaderMenu />
     <Menu />
     <Footer />
   </div>
 </template>
 
 <script>
-import Header from "@/components/Header";
+import HeaderMenu from "@/components/HeaderMenu";
 import Footer from "@/components/Footer";
 import Menu from "@/components/Menu";
 export default {
   components: {
-    Header,
+    HeaderMenu,
     Footer,
     Menu,
   },

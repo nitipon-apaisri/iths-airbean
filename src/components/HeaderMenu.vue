@@ -10,17 +10,11 @@
         <img src="../assets/bag.svg" alt="bag-icon" />
       </div>
     </div>
-    <Order />
   </div>
 </template>
 
 <script>
-import Order from "@/components/Order";
-export default {
-  components: {
-    Order,
-  },
-};
+export default {};
 </script>
 
 <style lang="scss" scoped>
@@ -34,10 +28,14 @@ export default {
     display: flex;
     justify-content: space-between;
     position: absolute;
-    .navi-icon {
+    .header-icons {
       border-radius: 100%;
       padding: 12px;
       height: 16px;
+      cursor: pointer;
+    }
+    .navi-icon {
+      @extend .header-icons;
       background-color: #fff;
       img {
         width: 16px;
@@ -45,9 +43,7 @@ export default {
       }
     }
     .order-icon {
-      border-radius: 100%;
-      padding: 12px;
-      height: 16px;
+      @extend .header-icons;
       background-color: #333;
       img {
         width: 16px;
