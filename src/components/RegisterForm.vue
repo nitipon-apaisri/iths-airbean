@@ -1,5 +1,12 @@
 <template>
   <div class="register-form">
+    <img src="../assets/graphics-header.svg" alt="header-img" />
+    <div class="header-content">
+      <div class="navi-icon">
+        <img src="../assets/navicon.svg" alt="" />
+      </div>
+      <!-- <NavigationBar/> -->
+    </div>
     <div class="register-card">
       <img src="../assets/mini-logo.svg" alt="logo" />
       <div class="title">
@@ -91,7 +98,27 @@ export default {
   }
 }
 .register-form {
+  position: relative;
   padding-bottom: 20px;
+  .header-content {
+    top: 0;
+    box-sizing: border-box;
+    padding: 12px 16px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    .navi-icon {
+      border-radius: 100%;
+      padding: 12px;
+      height: 16px;
+      background-color: #fff;
+      img {
+        width: 16px;
+        height: 16px;
+      }
+    }
+  }
   .register-card {
     overflow: overlay;
     box-sizing: border-box;

@@ -1,7 +1,5 @@
 <template>
   <div class="register">
-    <img src="../assets/graphics-header.svg" alt="header-img" />
-    <!-- <NavigationBar/> -->
     <Register />
   </div>
 </template>

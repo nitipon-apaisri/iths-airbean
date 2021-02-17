@@ -5,7 +5,11 @@
     <ul>
       <li v-for="(item, index) in Coffee" :key="index">
         <div class="addCoffee">
-          <img src="../assets/add.svg" alt="add-butt" />
+          <img
+            src="../assets/add.svg"
+            alt="add-butt"
+            @click="orderCoffee(index)"
+          />
           <div class="coffee">
             <div class="coffee-title">
               <h3>{{ item.title }}</h3>
@@ -36,6 +40,9 @@ export default {
         this.$store.dispatch("getCoffee");
         this.loader = false;
       }, 300);
+    },
+    orderCoffee(index) {
+      this.$store.dispatch("orderCoffee", index);
     },
   },
   computed: {

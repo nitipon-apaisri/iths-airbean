@@ -6,7 +6,9 @@
       <router-link to="/menu">Menu</router-link> |
       <router-link to="/register">Register</router-link>
     </div>
-    <router-view />
+    <div class="container">
+      <router-view />
+    </div>
   </div>
 </template>
 <script>
@@ -25,6 +27,7 @@ hr {
 }
 body {
   margin: 0 !important;
+  background-color: #edf2f7;
   #app {
     font-family: Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -47,6 +50,14 @@ body {
         color: #42b983;
       }
     }
+  }
+  .container {
+    box-shadow: 0 1.6px 2.2px -20px rgba(0, 0, 0, 0.019),
+      0 3.9px 5.3px -20px rgba(0, 0, 0, 0.027),
+      0 7.3px 10px -20px rgba(0, 0, 0, 0.032),
+      0 13px 17.9px -20px rgba(0, 0, 0, 0.039),
+      0 24.2px 33.4px -20px rgba(0, 0, 0, 0.048),
+      0 58px 80px -20px rgba(0, 0, 0, 0.07);
   }
 }
 </style>
