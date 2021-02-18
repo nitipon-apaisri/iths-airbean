@@ -9,7 +9,7 @@ export default new Vuex.Store({
       loader: false,
       users: [],
       preOrder: [],
-      makeOrder: {},
+      makeOrder: [],
       toggleBag: false,
    },
    mutations: {
@@ -45,7 +45,7 @@ export default new Vuex.Store({
          state.toggleBag = true;
       },
       makeOrder(state) {
-         console.log(state.makeOrder);
+         state.makeOrder.push(state.preOrder);
       },
    },
    actions: {
