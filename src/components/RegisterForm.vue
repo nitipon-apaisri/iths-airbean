@@ -73,6 +73,9 @@ export default {
         this.user.email = "";
         this.gdpr = false;
         this.validate = false;
+        setTimeout(() => {
+          this.$router.push("/menu");
+        }, 3000);
       }
     },
   },
