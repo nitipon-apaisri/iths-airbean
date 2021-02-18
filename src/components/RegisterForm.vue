@@ -1,11 +1,14 @@
 <template>
   <div class="register-form">
+     <navigation-bar v-if="showNav" v-on:toggleNavbar="toggleNavbar" class="navigation-bar"/>
     <img src="../assets/graphics-header.svg" alt="header-img" />
     <div class="header-content">
-      <div class="navi-icon">
+      <div class="navi-icon" v-on:click="toggleNavbar" > 
         <img src="../assets/navicon.svg" alt="" />
       </div>
-      <!-- <NavigationBar/> -->
+      <div class="order-icon" @click="toggleOrderButt" v-if="toggleBag">
+        <img src="../assets/bag.svg" alt="bag-icon" />
+      </div>
     </div>
     <div class="register-card">
       <img src="../assets/mini-logo.svg" alt="logo" />
@@ -52,7 +55,11 @@
 </template>
 
 <script>
+import NavigationBar from './NavigationBar.vue';
 export default {
+  components: {
+    NavigationBar,
+  },
   data() {
     return {
       user: {
@@ -61,6 +68,7 @@ export default {
       },
       gdpr: false,
       validate: false,
+      showNav: false,
     };
   },
   methods: {
@@ -75,6 +83,9 @@ export default {
         this.gdpr = false;
         this.validate = false;
       }
+    },
+     toggleNavbar(){
+      this.showNav = !this.showNav
     },
   },
 };
@@ -118,7 +129,13 @@ export default {
         height: 16px;
       }
     }
+    
   }
+  .navigation-bar{
+    z-index: 1;
+    position: absolute;
+    width: 100%;
+  } 
   .register-card {
     overflow: overlay;
     box-sizing: border-box;

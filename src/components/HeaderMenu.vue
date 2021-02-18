@@ -6,7 +6,6 @@
      <div class="navi-icon" v-on:click="toggleNavbar" > 
         <img src="../assets/navicon.svg" alt="" />
       </div>
-      <!-- <NavigationBar/> -->
       <div class="order-icon" @click="toggleOrderButt" v-if="toggleBag">
         <img src="../assets/bag.svg" alt="bag-icon" />
       </div>

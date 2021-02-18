@@ -1,17 +1,36 @@
 <template>
   <div class="wrapper">
+    <navigation-bar v-if="showNav" v-on:toggleNavbar="toggleNavbar" class="navigation-bar"/>
     <img src="../assets/graphics-header.svg" alt="header-img" />
     <div class="header-content">
-      <div class="navi-icon">
+      <div class="navi-icon" v-on:click="toggleNavbar" > 
         <img src="../assets/navicon.svg" alt="" />
       </div>
-      <!-- <NavigationBar/> -->
+     <div class="order-icon" @click="toggleOrderButt" v-if="toggleBag">
+        <img src="../assets/bag.svg" alt="bag-icon" />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+import NavigationBar from './NavigationBar.vue';
+
+export default {
+  components: {
+    NavigationBar,
+  },
+  data() {
+    return {
+        showNav: false,
+    };
+  },
+  methods: {
+     toggleNavbar(){
+      this.showNav = !this.showNav
+    }
+  }
+};
 </script>
 
 <style lang="scss" scoped>
@@ -39,6 +58,11 @@ export default {};
         height: 16px;
       }
     }
+  }
+  .navigation-bar{
+    z-index: 1;
+    position: absolute;
+    width: 100%;
   }
 }
 </style>
