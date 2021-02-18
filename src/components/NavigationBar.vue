@@ -29,7 +29,7 @@ export default {
 .nav-bar{   
     display: flex;
     background-color:#2F2926;
-    height: 60vh;
+    height: 62vh;
     flex-direction: column;
     justify-content: space-between;
     padding-bottom: 50px;

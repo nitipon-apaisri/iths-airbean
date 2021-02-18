@@ -1,6 +1,5 @@
 <template>
   <div class="menu">
-    <!-- <NavigationBar/> -->
     <HeaderMenu />
     <Menu />
     <Footer />

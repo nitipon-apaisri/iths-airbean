@@ -87,5 +87,10 @@ export default {
     position: absolute;
     width: 100%;
   }
+  .navigation-bar {
+    z-index: 1;
+    position: absolute;
+    width: 100%;
+  }
 }
 </style>
