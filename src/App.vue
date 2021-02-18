@@ -26,6 +26,18 @@ p,
 hr {
   margin: 0;
 }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+button {
+  font-family: "PT Serif", sans-serif;
+}
+p {
+  font-family: "Work Sans", sans-serif;
+}
 body {
   margin: 0 !important;
   background-color: #edf2f7;
