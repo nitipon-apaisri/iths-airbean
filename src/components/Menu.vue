@@ -43,6 +43,9 @@ export default {
     },
     orderCoffee(index) {
       this.$store.dispatch("orderCoffee", index);
+      setTimeout(() => {
+        this.$store.dispatch("toggleBag");
+      }, 200);
     },
   },
   computed: {
@@ -59,6 +62,7 @@ export default {
   ul {
     padding: 0;
     li {
+      margin-bottom: 12px;
       list-style: none;
       .addCoffee {
         display: flex;

@@ -6,7 +6,7 @@
         <img src="../assets/navicon.svg" alt="" />
       </div>
       <!-- <NavigationBar/> -->
-      <div class="order-icon" @click="toggleOrderButt">
+      <div class="order-icon" @click="toggleOrderButt" v-if="toggleBag">
         <img src="../assets/bag.svg" alt="bag-icon" />
       </div>
     </div>
@@ -16,6 +16,7 @@
 
 <script>
 import Order from "@/components/Order.vue";
+import { mapGetters } from "vuex";
 export default {
   components: {
     Order,
@@ -29,6 +30,9 @@ export default {
     toggleOrderButt() {
       this.toggleOrder = !this.toggleOrder;
     },
+  },
+  computed: {
+    ...mapGetters(["toggleBag"]),
   },
 };
 </script>

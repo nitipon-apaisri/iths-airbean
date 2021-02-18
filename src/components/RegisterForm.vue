@@ -129,12 +129,10 @@ export default {
     background-color: #f3e4e1;
     .title {
       h2 {
-        font-family: "PT Serif", sans-serif;
         font-size: 2rem;
       }
       p {
         margin: 16px 0;
-        font-family: "Work Sans", sans-serif;
         font-size: 0.95rem;
       }
     }

@@ -9,6 +9,7 @@ export default new Vuex.Store({
       loader: false,
       users: [],
       order: [],
+      toggleBag: false,
    },
    mutations: {
       register(state, query) {
@@ -33,6 +34,15 @@ export default new Vuex.Store({
          state.order[index].total++;
          state.order[index].price = state.order[index].basePrice * state.order[index].total;
       },
+      decreaseOrder(state, index) {
+         if (state.order[index].total !== 0) {
+            state.order[index].total--;
+            state.order[index].price = state.order[index].basePrice * state.order[index].total;
+         }
+      },
+      toggleBag(state) {
+         state.toggleBag = true;
+      },
    },
    actions: {
       getCoffee({ state }) {
@@ -50,12 +60,26 @@ export default new Vuex.Store({
       increaseOrder({ commit }, index) {
          commit("increaseOrder", index);
       },
+      decreaseOrder({ commit }, index) {
+         commit("decreaseOrder", index);
+      },
+      toggleBag({ commit }) {
+         commit("toggleBag");
+      },
    },
    getters: {
       order(state) {
          let uniq = {};
          let filterArr = state.order.filter((obj) => !uniq[obj.name] && (uniq[obj.name] = true));
          return filterArr;
+      },
+      totalCost(state) {
+         let allPrice = [];
+         state.order.forEach((r) => allPrice.push(r.price));
+         return allPrice.reduce((a, b) => a + b);
+      },
+      toggleBag(state) {
+         return state.toggleBag;
       },
    },
 });
