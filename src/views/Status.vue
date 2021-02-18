@@ -2,46 +2,31 @@
   <section class="status">
     <p class="order-number">Ordernummer: {{ orderNumber }}</p>
     <img src="@/assets/drone.svg" alt="" />
-    <h1 v-if="ETA > 0">Din beställning är påväg!</h1>
+    <h1 v-if="countDown > 0">Din beställning är påväg!</h1>
     <h1 v-else>Din beställning är framme!</h1>
-    <p v-if="ETA > 0" class="timer">
-      <strong>{{ ETA }}</strong> minuter
+    <p v-if="countDown > 0" class="timer">
+      <strong>{{ countDown }}</strong> minuter
     </p>
     <button @click="clearOrder" class="cta">Ok, cool!</button>
   </section>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
-  data() {
-    return {
-      ETA: 12,
-    };
-  },
-
   computed: {
     orderNumber() {
       return "#8U9485HR";
     },
+    ...mapGetters(["countDown"]),
   },
   methods: {
-    countDown() {
-      if (this.ETA > 0) {
-        setTimeout(() => {
-          this.ETA--;
-          this.countDown();
-        }, 60000);
-      }
-    },
     clearOrder() {
       this.$store.dispatch("clearOrder");
       setTimeout(() => {
         this.$router.push("/menu");
       }, 300);
     },
-  },
-  mounted() {
-    this.countDown();
   },
 };
 </script>

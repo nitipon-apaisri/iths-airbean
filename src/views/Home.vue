@@ -12,7 +12,7 @@ export default {
   mounted() {
     setTimeout(() => {
       this.$router.push("/register");
-    }, 9000);
+    }, 900);
   },
 };
 </script>
