@@ -1,6 +1,6 @@
 <template>
   <section class="about">
-    <Header />
+    <MainHeader />
     <article>
       <h1>Vårt kaffe</h1>
       <p class="lead">
@@ -38,11 +38,11 @@
 </template>
 
 <script>
-import Header from '@/components/Header.vue'
-import Footer from '@/components/Footer.vue'
+import MainHeader from "@/components/MainHeader.vue";
+import Footer from "@/components/Footer.vue";
 export default {
-  components: { Header, Footer }
-}
+  components: { MainHeader, Footer },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -59,7 +59,8 @@ export default {
     font-size: 2.6rem;
     color: #24201d;
   }
-  h2, h3 {
+  h2,
+  h3 {
     font-size: 1.4rem;
   }
   p {
@@ -78,13 +79,13 @@ export default {
     text-align: left;
     margin: 1rem;
   }
-  .author{
+  .author {
     margin-top: 2rem;
     margin-bottom: 3rem;
-    img{
+    img {
       border-radius: 4rem;
     }
-    p{
+    p {
       margin: 0;
     }
   }
