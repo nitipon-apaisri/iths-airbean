@@ -8,8 +8,10 @@ export default new Vuex.Store({
       coffeeMenu: [],
       loader: false,
       users: [],
+      currentUser: [],
       preOrder: [],
       makeOrder: [],
+      ETA: 10,
       toggleBag: false,
       toggleOrder: false,
    },
@@ -18,10 +20,11 @@ export default new Vuex.Store({
          let user = new Object();
          user.name = query.name;
          user.email = query.email;
+         user.order = [];
          setTimeout(() => {
             user.id = Date.now();
             state.users.push(user);
-            localStorage.setItem("users", JSON.stringify(state.users));
+            console.log(state.users);
          }, 100);
       },
       addCoffee(state, index) {
@@ -54,9 +57,13 @@ export default new Vuex.Store({
          newOrder.order = [];
          newOrder.order.push(state.preOrder);
          state.makeOrder.push(newOrder);
+         state.ETA = 10;
          console.log(JSON.parse(JSON.stringify(state.makeOrder)));
       },
       clearOrder(state) {
+         state.users[0].order.push(state.makeOrder);
+         console.log(JSON.parse(JSON.stringify(state.users[0].order[0])));
+         // localStorage.setItem("users", JSON.stringify(state.users));
          state.preOrder = [];
          state.toggleOrder = false;
          state.toggleBag = false;
@@ -109,6 +116,14 @@ export default new Vuex.Store({
       },
       toggleOrder(state) {
          return state.toggleOrder;
+      },
+      countDown(state) {
+         if (state.ETA > 0) {
+            setTimeout(() => {
+               state.ETA--;
+            }, 6000);
+         }
+         return state.ETA;
       },
    },
 });

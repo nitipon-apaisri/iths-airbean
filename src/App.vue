@@ -43,7 +43,7 @@ body {
     width: 375px;
     max-width: 375px;
     margin: auto;
-    height: 580px;
+    height: 560px;
   }
 
   #nav {
