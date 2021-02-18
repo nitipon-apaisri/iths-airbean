@@ -69,6 +69,9 @@ export default {
     },
     makeOrder() {
       this.$store.dispatch("makeOrder");
+      setTimeout(() => {
+        this.$router.push("/status");
+      }, 300);
     },
   },
 };
@@ -157,6 +160,7 @@ p {
     .take-my-money {
       margin: 32px 0;
       button {
+        cursor: pointer;
         background-color: #2f2926;
         color: #fff;
         font-weight: bold;

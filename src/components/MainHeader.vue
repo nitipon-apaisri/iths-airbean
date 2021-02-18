@@ -29,21 +29,19 @@ export default {
   },
   data() {
     return {
-      toggleOrder: false,
       showNav: false,
     };
   },
   methods: {
     toggleOrderButt() {
-      console.log(JSON.parse(JSON.stringify(this.$store.state.preOrder)));
-      this.toggleOrder = !this.toggleOrder;
+      this.$store.dispatch("toggleOrder");
     },
     toggleNavbar() {
       this.showNav = !this.showNav;
     },
   },
   computed: {
-    ...mapGetters(["toggleBag"]),
+    ...mapGetters(["toggleBag", "toggleOrder"]),
   },
 };
 </script>

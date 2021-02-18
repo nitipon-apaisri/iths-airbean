@@ -11,6 +11,7 @@ export default new Vuex.Store({
       preOrder: [],
       makeOrder: [],
       toggleBag: false,
+      toggleOrder: false,
    },
    mutations: {
       register(state, query) {
@@ -44,15 +45,27 @@ export default new Vuex.Store({
       toggleBag(state) {
          state.toggleBag = true;
       },
+      toggleOrder(state) {
+         state.toggleOrder = !state.toggleOrder;
+      },
       makeOrder(state) {
-         state.makeOrder.push(state.preOrder);
+         let newOrder = new Object();
+         newOrder.orderId = Date.now();
+         newOrder.order = [];
+         newOrder.order.push(state.preOrder);
+         state.makeOrder.push(newOrder);
+         console.log(JSON.parse(JSON.stringify(state.makeOrder)));
+      },
+      clearOrder(state) {
+         state.preOrder = [];
+         state.toggleOrder = false;
+         state.toggleBag = false;
       },
    },
    actions: {
       getCoffee({ state }) {
          state.coffeeMenu = [];
          DATA.fetchProducts().forEach((r) => state.coffeeMenu.push(r));
-         console.log(JSON.parse(JSON.stringify(state.coffeeMenu)));
       },
       register({ commit }, query) {
          // DATA.registerUser(query.name, query.email);
@@ -70,8 +83,14 @@ export default new Vuex.Store({
       toggleBag({ commit }) {
          commit("toggleBag");
       },
+      toggleOrder({ commit }) {
+         commit("toggleOrder");
+      },
       makeOrder({ commit }) {
          commit("makeOrder");
+      },
+      clearOrder({ commit }) {
+         commit("clearOrder");
       },
    },
    getters: {
@@ -87,6 +106,9 @@ export default new Vuex.Store({
       },
       toggleBag(state) {
          return state.toggleBag;
+      },
+      toggleOrder(state) {
+         return state.toggleOrder;
       },
    },
 });
