@@ -1,8 +1,9 @@
 <template>
   <div class="wrapper">
+    <navigation-bar v-if="showNav" v-on:toggleNavbar="toggleNavbar" class="navigation-bar"/>
     <img src="../assets/graphics-header.svg" alt="header-img" />
     <div class="header-content">
-      <div class="navi-icon">
+     <div class="navi-icon" v-on:click="toggleNavbar" > 
         <img src="../assets/navicon.svg" alt="" />
       </div>
       <!-- <NavigationBar/> -->
@@ -16,20 +17,26 @@
 
 <script>
 import Order from "@/components/Order.vue";
+import NavigationBar from './NavigationBar.vue';
 import { mapGetters } from "vuex";
 export default {
   components: {
     Order,
+    NavigationBar,
   },
   data() {
     return {
       toggleOrder: false,
+        showNav: false,
     };
   },
   methods: {
     toggleOrderButt() {
       console.log(JSON.parse(JSON.stringify(this.$store.state.preOrder)));
       this.toggleOrder = !this.toggleOrder;
+    },
+     toggleNavbar(){
+      this.showNav = !this.showNav
     },
   },
   computed: {
@@ -71,6 +78,11 @@ export default {
         height: 16px;
       }
     }
+  }
+  .navigation-bar{
+    z-index: 1;
+    position: absolute;
+    width: 100%;
   }
 }
 </style>
