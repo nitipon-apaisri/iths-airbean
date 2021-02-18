@@ -6,15 +6,31 @@
         <img src="../assets/navicon.svg" alt="" />
       </div>
       <!-- <NavigationBar/> -->
-      <div class="order-icon">
+      <div class="order-icon" @click="toggleOrderButt">
         <img src="../assets/bag.svg" alt="bag-icon" />
       </div>
     </div>
+    <Order v-if="toggleOrder" />
   </div>
 </template>
 
 <script>
-export default {};
+import Order from "@/components/Order.vue";
+export default {
+  components: {
+    Order,
+  },
+  data() {
+    return {
+      toggleOrder: false,
+    };
+  },
+  methods: {
+    toggleOrderButt() {
+      this.toggleOrder = !this.toggleOrder;
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
