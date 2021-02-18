@@ -4,13 +4,13 @@
 <img src="../assets/close.svg" alt="">
       </div>
       <ul class="nav-ul">
-       <router-link to="/"> <li class="li">Meny</li></router-link> 
+       <router-link to="/menu"> <li class="li">Meny</li></router-link> 
           <li class="li">___</li>
         <router-link to="/about">  <li class="li">Vårt kaffe</li></router-link> 
           <li class="li">___</li>
-         <router-link to="/menu">  <li class="li">Min profil</li> </router-link> 
+         <router-link to="/register">  <li class="li">Min profil</li> </router-link> 
           <li class="li">___</li>
-      <router-link to="/register">    <li class="li">Orderstatus</li> </router-link> 
+      <router-link to="/status">    <li class="li">Orderstatus</li> </router-link> 
       </ul>
   </div>
 </template>

@@ -1,6 +1,8 @@
 <template>
   <section class="home">
-    <img src="@/assets/airbean-landing.svg" alt="airbean logo">
+    <router-link to="/menu">
+      <img src="@/assets/airbean-landing.svg" alt="airbean logo">
+    </router-link>
   </section>
 </template>
 
