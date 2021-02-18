@@ -1,18 +1,18 @@
 <template>
   <div class="menu">
-    <HeaderMenu />
+    <MainHeader />
     <Menu />
     <Footer />
   </div>
 </template>
 
 <script>
-import HeaderMenu from "@/components/HeaderMenu";
+import MainHeader from "@/components/MainHeader";
 import Footer from "@/components/Footer";
 import Menu from "@/components/Menu";
 export default {
   components: {
-    HeaderMenu,
+    MainHeader,
     Footer,
     Menu,
   },
