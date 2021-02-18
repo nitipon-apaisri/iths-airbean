@@ -22,7 +22,6 @@
         </div>
       </li>
     </ul>
-    <button @click="getCoffee">Click!</button>
   </div>
 </template>
 
@@ -33,16 +32,16 @@ export default {
       loader: false,
     };
   },
+  beforeMount() {
+    this.loader = true;
+    setTimeout(() => {
+      this.$store.dispatch("getCoffee");
+      this.loader = false;
+    }, 800);
+  },
   methods: {
-    getCoffee() {
-      this.loader = true;
-      setTimeout(() => {
-        this.$store.dispatch("getCoffee");
-        this.loader = false;
-      }, 300);
-    },
     orderCoffee(index) {
-      this.$store.dispatch("orderCoffee", index);
+      this.$store.dispatch("addCoffee", index);
       setTimeout(() => {
         this.$store.dispatch("toggleBag");
       }, 200);

@@ -8,7 +8,8 @@ export default new Vuex.Store({
       coffeeMenu: [],
       loader: false,
       users: [],
-      order: [],
+      preOrder: [],
+      makeOrder: {},
       toggleBag: false,
    },
    mutations: {
@@ -22,26 +23,29 @@ export default new Vuex.Store({
             localStorage.setItem("users", JSON.stringify(state.users));
          }, 100);
       },
-      makeOrderCoffee(state, index) {
+      addCoffee(state, index) {
          let order = new Object();
          order.name = state.coffeeMenu[index].title;
          order.price = state.coffeeMenu[index].price;
          order.total = 1;
          order.basePrice = state.coffeeMenu[index].price;
-         state.order.push(order);
+         state.preOrder.push(order);
       },
       increaseOrder(state, index) {
-         state.order[index].total++;
-         state.order[index].price = state.order[index].basePrice * state.order[index].total;
+         state.preOrder[index].total++;
+         state.preOrder[index].price = state.preOrder[index].basePrice * state.preOrder[index].total;
       },
       decreaseOrder(state, index) {
-         if (state.order[index].total !== 0) {
-            state.order[index].total--;
-            state.order[index].price = state.order[index].basePrice * state.order[index].total;
+         if (state.preOrder[index].total !== 0) {
+            state.preOrder[index].total--;
+            state.preOrder[index].price = state.preOrder[index].basePrice * state.preOrder[index].total;
          }
       },
       toggleBag(state) {
          state.toggleBag = true;
+      },
+      makeOrder(state) {
+         console.log(state.makeOrder);
       },
    },
    actions: {
@@ -54,8 +58,8 @@ export default new Vuex.Store({
          // DATA.registerUser(query.name, query.email);
          commit("register", query);
       },
-      orderCoffee({ commit }, index) {
-         commit("makeOrderCoffee", index);
+      addCoffee({ commit }, index) {
+         commit("addCoffee", index);
       },
       increaseOrder({ commit }, index) {
          commit("increaseOrder", index);
@@ -66,16 +70,19 @@ export default new Vuex.Store({
       toggleBag({ commit }) {
          commit("toggleBag");
       },
+      makeOrder({ commit }) {
+         commit("makeOrder");
+      },
    },
    getters: {
       order(state) {
          let uniq = {};
-         let filterArr = state.order.filter((obj) => !uniq[obj.name] && (uniq[obj.name] = true));
+         let filterArr = state.preOrder.filter((obj) => !uniq[obj.name] && (uniq[obj.name] = true));
          return filterArr;
       },
       totalCost(state) {
          let allPrice = [];
-         state.order.forEach((r) => allPrice.push(r.price));
+         state.preOrder.forEach((r) => allPrice.push(r.price));
          return allPrice.reduce((a, b) => a + b);
       },
       toggleBag(state) {

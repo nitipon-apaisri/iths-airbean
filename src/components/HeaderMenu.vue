@@ -28,6 +28,7 @@ export default {
   },
   methods: {
     toggleOrderButt() {
+      console.log(JSON.parse(JSON.stringify(this.$store.state.preOrder)));
       this.toggleOrder = !this.toggleOrder;
     },
   },

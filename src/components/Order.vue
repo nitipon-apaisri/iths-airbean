@@ -39,6 +39,9 @@
         </div>
         <h3>{{ totalCost }} Kr</h3>
       </div>
+      <div class="take-my-money">
+        <button @click="makeOrder">Take my money</button>
+      </div>
     </div>
   </div>
 </template>
@@ -64,12 +67,16 @@ export default {
     toggleOrderButt2() {
       this.toggleOrder2 = !this.toggleOrder2;
     },
+    makeOrder() {
+      this.$store.dispatch("makeOrder");
+    },
   },
 };
 </script>
 
 <style lang="scss" scoped>
 @import url("https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&family=Work+Sans:wght@300;400&display=swap");
+button,
 h3 {
   font-size: 1.5rem;
 }
@@ -100,7 +107,7 @@ p {
   .order-items {
     position: relative;
     background-color: #fff;
-    border-radius: 2px;
+    border-radius: 4px;
     padding: 8px;
     width: 100%;
     box-sizing: border-box;
@@ -145,6 +152,17 @@ p {
       justify-content: space-between;
       .inmom {
         text-align: left;
+      }
+    }
+    .take-my-money {
+      margin: 32px 0;
+      button {
+        background-color: #2f2926;
+        color: #fff;
+        font-weight: bold;
+        padding: 8px 24px;
+        border-radius: 24px;
+        border: 1px solid transparent;
       }
     }
   }
