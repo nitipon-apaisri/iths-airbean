@@ -26,7 +26,12 @@ export default new Vuex.Store({
          order.name = state.coffeeMenu[index].title;
          order.price = state.coffeeMenu[index].price;
          order.total = 1;
-         console.log(order);
+         order.basePrice = state.coffeeMenu[index].price;
+         state.order.push(order);
+      },
+      increaseOrder(state, index) {
+         state.order[index].total++;
+         state.order[index].price = state.order[index].basePrice * state.order[index].total;
       },
    },
    actions: {
@@ -41,6 +46,16 @@ export default new Vuex.Store({
       },
       orderCoffee({ commit }, index) {
          commit("makeOrderCoffee", index);
+      },
+      increaseOrder({ commit }, index) {
+         commit("increaseOrder", index);
+      },
+   },
+   getters: {
+      order(state) {
+         let uniq = {};
+         let filterArr = state.order.filter((obj) => !uniq[obj.name] && (uniq[obj.name] = true));
+         return filterArr;
       },
    },
 });

@@ -6,19 +6,29 @@
         <img src="../assets/navicon.svg" alt="" />
       </div>
       <!-- <NavigationBar/> -->
-      <div class="order-icon">
+      <div class="order-icon" @click="toggleOrderButt">
         <img src="../assets/bag.svg" alt="bag-icon" />
       </div>
     </div>
-    <Order />
+    <Order v-if="toggleOrder" />
   </div>
 </template>
 
 <script>
-import Order from "@/components/Order";
+import Order from "@/components/Order.vue";
 export default {
   components: {
     Order,
+  },
+  data() {
+    return {
+      toggleOrder: false,
+    };
+  },
+  methods: {
+    toggleOrderButt() {
+      this.toggleOrder = !this.toggleOrder;
+    },
   },
 };
 </script>
@@ -34,10 +44,14 @@ export default {
     display: flex;
     justify-content: space-between;
     position: absolute;
-    .navi-icon {
+    .header-icons {
       border-radius: 100%;
       padding: 12px;
       height: 16px;
+      cursor: pointer;
+    }
+    .navi-icon {
+      @extend .header-icons;
       background-color: #fff;
       img {
         width: 16px;
@@ -45,9 +59,7 @@ export default {
       }
     }
     .order-icon {
-      border-radius: 100%;
-      padding: 12px;
-      height: 16px;
+      @extend .header-icons;
       background-color: #333;
       img {
         width: 16px;
