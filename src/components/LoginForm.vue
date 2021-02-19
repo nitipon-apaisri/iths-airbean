@@ -5,9 +5,7 @@
       <img src="../assets/mini-logo.svg" alt="logo" />
       <div class="title">
         <h2>Välkommen till AirBean-familjen!</h2>
-        <p>
-          Genom att skapa ett konto nedan kan du spara och se din orderhistorik.
-        </p>
+        <p>Genom att logga in nedan kan du se din orderhistorik.</p>
       </div>
       <form @submit.prevent="send">
         <p v-if="validate">Please fill input</p>
@@ -33,12 +31,12 @@
             v-model="user.email"
           />
         </div>
-        <div class="gdpr">
-          <input type="checkbox" name="gdpr" id="gdpr" v-model="gdpr" />
-          <p>GDPR Ok!</p>
+        <div class="not-robot">
+          <input type="checkbox" name="gdpr" id="notRobot" v-model="notRobot" />
+          <p>I'm not a robot 🤖</p>
         </div>
-        <button :disabled="!gdpr" :class="{ active: gdpr }">
-          Brew me a cup !
+        <button :disabled="!notRobot" :class="{ active: notRobot }">
+          Let's go !
         </button>
       </form>
     </div>
@@ -57,7 +55,7 @@ export default {
         name: "",
         email: "",
       },
-      gdpr: false,
+      notRobot: false,
       validate: false,
       showNav: false,
     };
@@ -66,12 +64,12 @@ export default {
     send() {
       if (this.user.name.length == 0 || this.user.email.length == 0) {
         this.validate = true;
-        this.gdpr = false;
+        this.notRobot = false;
       } else {
         this.$store.dispatch("register", this.user);
         this.user.name = "";
         this.user.email = "";
-        this.gdpr = false;
+        this.notRobot = false;
         this.validate = false;
         setTimeout(() => {
           this.$router.push("/menu");
@@ -92,6 +90,7 @@ export default {
   label {
     font-size: 0.8rem;
     margin-bottom: 4px;
+    font-weight: bold;
   }
   input {
     padding: 12px 16px;
@@ -148,7 +147,7 @@ export default {
       .email {
         @extend .registger-input;
       }
-      .gdpr {
+      .not-robot {
         display: flex;
         input {
           margin: 0 12px 0 0;
@@ -156,9 +155,9 @@ export default {
         }
         p {
           letter-spacing: 0.0125rem;
-          font-weight: 500;
+          font-weight: bold;
           align-self: center;
-          font-size: 0.7rem;
+          font-size: 0.8rem;
         }
       }
       button {

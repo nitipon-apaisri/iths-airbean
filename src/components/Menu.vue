@@ -1,7 +1,9 @@
 <template>
   <div class="content">
     <h1>Menu</h1>
-    <img src="../assets/loader.png" alt="loader" v-if="loader" />
+    <div class="loader" v-if="loader">
+      <img src="../assets/loader.png" alt="loader" />
+    </div>
     <ul>
       <li v-for="(item, index) in Coffee" :key="index">
         <div class="addCoffee">
@@ -33,11 +35,18 @@ export default {
     };
   },
   beforeMount() {
-    this.loader = true;
-    setTimeout(() => {
-      this.$store.dispatch("getCoffee");
+    if (this.Coffee.length < 1) {
+      this.loader = true;
+      setTimeout(() => {
+        this.$store.dispatch("getCoffee");
+        this.loader = false;
+      }, 800);
+    } else {
       this.loader = false;
-    }, 800);
+    }
+    if (this.$store.state.users.length == 0) {
+      this.$router.push("/register");
+    }
   },
   methods: {
     orderCoffee(index) {
@@ -58,6 +67,13 @@ export default {
 <style lang="scss" scoped>
 .content {
   padding: 0 24px;
+  .loader {
+    display: flex;
+    height: 310px;
+    img {
+      margin: auto;
+    }
+  }
   ul {
     padding: 0;
     li {

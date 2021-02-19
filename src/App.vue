@@ -1,12 +1,5 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link> |
-      <router-link to="/menu">Menu</router-link> |
-      <router-link to="/status">Status</router-link> |
-      <router-link to="/register">Register</router-link>
-    </div>
     <div class="container">
       <router-view />
     </div>
@@ -50,6 +43,7 @@ body {
     width: 375px;
     max-width: 375px;
     margin: auto;
+    height: 560px;
   }
 
   #nav {
@@ -65,6 +59,8 @@ body {
     }
   }
   .container {
+    height: 100%;
+    margin-top: 32px;
     box-shadow: 0 1.6px 2.2px -20px rgba(0, 0, 0, 0.019),
       0 3.9px 5.3px -20px rgba(0, 0, 0, 0.027),
       0 7.3px 10px -20px rgba(0, 0, 0, 0.032),
