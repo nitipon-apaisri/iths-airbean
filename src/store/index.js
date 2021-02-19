@@ -13,6 +13,7 @@ export default new Vuex.Store({
       ETA: 10,
       toggleBag: false,
       toggleOrder: false,
+      toggleOrderId: false,
    },
    mutations: {
       register(state, query) {
@@ -56,6 +57,7 @@ export default new Vuex.Store({
          state.preOrder.forEach((r) => newOrder.orderItems.push(r));
          state.makeOrder.push(newOrder);
          state.ETA = 10;
+         state.toggleOrderId = true;
       },
       clearOrder(state) {
          state.makeOrder.forEach((r) => state.users[0].order.push(r));
@@ -125,6 +127,9 @@ export default new Vuex.Store({
       },
       getOrderId(state) {
          return state.makeOrder[state.makeOrder.length - 1].orderId;
+      },
+      toggleOrderId(state) {
+         return state.toggleOrderId;
       },
    },
 });

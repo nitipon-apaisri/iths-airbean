@@ -1,6 +1,8 @@
 <template>
   <section class="status">
-    <p class="order-number">Ordernummer: #{{ getOrderId }}</p>
+    <p class="order-number" v-if="toggleOrderId">
+      Ordernummer: #{{ getOrderId }}
+    </p>
     <img src="@/assets/drone.svg" alt="" />
     <h1 v-if="countDown > 0">Din beställning är påväg!</h1>
     <h1 v-else>Din beställning är framme!</h1>
@@ -20,7 +22,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(["countDown", "getOrderId"]),
+    ...mapGetters(["countDown", "getOrderId", "toggleOrderId"]),
   },
   methods: {
     clearOrder() {
