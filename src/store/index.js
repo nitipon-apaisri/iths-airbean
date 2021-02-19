@@ -8,7 +8,6 @@ export default new Vuex.Store({
       coffeeMenu: [],
       loader: false,
       users: [],
-      currentUser: [],
       preOrder: [],
       makeOrder: [],
       ETA: 10,
@@ -54,17 +53,17 @@ export default new Vuex.Store({
       makeOrder(state) {
          let newOrder = new Object();
          newOrder.orderId = Date.now();
-         newOrder.order = [];
-         newOrder.order.push(state.preOrder);
+         newOrder.orderItems = [];
+         state.preOrder.forEach((r) => newOrder.orderItems.push(r));
          state.makeOrder.push(newOrder);
          state.ETA = 10;
-         console.log(JSON.parse(JSON.stringify(state.makeOrder)));
       },
       clearOrder(state) {
-         state.users[0].order.push(state.makeOrder);
-         console.log(JSON.parse(JSON.stringify(state.users[0].order[0])));
-         // localStorage.setItem("users", JSON.stringify(state.users));
+         state.makeOrder.forEach((r) => state.users[0].order.push(r));
+         localStorage.setItem("users", JSON.stringify(state.users));
+         state.makeOrder = [];
          state.preOrder = [];
+         console.log(JSON.parse(JSON.stringify(state.users[0])));
          state.toggleOrder = false;
          state.toggleBag = false;
       },
