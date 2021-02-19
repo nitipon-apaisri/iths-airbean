@@ -23,7 +23,6 @@ export default new Vuex.Store({
          setTimeout(() => {
             user.id = Date.now();
             state.users.push(user);
-            console.log(state.users);
          }, 100);
       },
       addCoffee(state, index) {
@@ -123,6 +122,9 @@ export default new Vuex.Store({
             }, 6000);
          }
          return state.ETA;
+      },
+      getOrderId(state) {
+         return state.makeOrder[state.makeOrder.length - 1].orderId;
       },
    },
 });

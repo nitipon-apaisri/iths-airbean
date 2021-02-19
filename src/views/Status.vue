@@ -1,6 +1,6 @@
 <template>
   <section class="status">
-    <p class="order-number">Ordernummer: {{ orderNumber }}</p>
+    <p class="order-number">Ordernummer: #{{ getOrderId }}</p>
     <img src="@/assets/drone.svg" alt="" />
     <h1 v-if="countDown > 0">Din beställning är påväg!</h1>
     <h1 v-else>Din beställning är framme!</h1>
@@ -14,11 +14,13 @@
 <script>
 import { mapGetters } from "vuex";
 export default {
+  beforeMount() {
+    if (this.$store.state.users.length == 0) {
+      this.$router.push("/register");
+    }
+  },
   computed: {
-    orderNumber() {
-      return "#8U9485HR";
-    },
-    ...mapGetters(["countDown"]),
+    ...mapGetters(["countDown", "getOrderId"]),
   },
   methods: {
     clearOrder() {
