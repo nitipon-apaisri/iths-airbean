@@ -5,7 +5,7 @@
       <img src="../assets/loader.png" alt="loader" />
     </div>
     <ul>
-      <li v-for="(item, index) in Coffee" :key="index">
+      <li v-for="(item, index) in coffeeList" :key="index">
         <div class="addCoffee">
           <img
             src="../assets/add.svg"
@@ -14,7 +14,7 @@
           />
           <div class="coffee">
             <div class="coffee-title">
-              <h3>{{ item.title }}</h3>
+              <h3 @click="toggleCoffeeDetails(index)">{{ item.title }}</h3>
               <p>{{ item.desc }}</p>
             </div>
             <div class="coffee-price">
@@ -24,18 +24,26 @@
         </div>
       </li>
     </ul>
+    <CoffeeDetails :index="index" v-if="coffeeDetails" />
   </div>
 </template>
 
 <script>
+import CoffeeDetails from "./CoffeeDetails";
+import { mapGetters } from "vuex";
 export default {
+  components: {
+    CoffeeDetails,
+  },
   data() {
     return {
       loader: false,
+      index: 0,
+      coffeeDetails: false,
     };
   },
   beforeMount() {
-    if (this.Coffee.length < 1) {
+    if (this.coffeeList.length < 1) {
       this.loader = true;
       setTimeout(() => {
         this.$store.dispatch("getCoffee");
@@ -44,9 +52,9 @@ export default {
     } else {
       this.loader = false;
     }
-    if (this.$store.state.users.length == 0) {
-      this.$router.push("/register");
-    }
+    // if (this.$store.state.users.length == 0) {
+    //   this.$router.push("/register");
+    // }
   },
   methods: {
     orderCoffee(index) {
@@ -55,17 +63,22 @@ export default {
         this.$store.dispatch("toggleBag");
       }, 200);
     },
+    toggleCoffeeDetails(index) {
+      this.index = index;
+      setTimeout(() => {
+        this.coffeeDetails = true;
+      }, 500);
+    },
   },
   computed: {
-    Coffee() {
-      return this.$store.state.coffeeMenu;
-    },
+    ...mapGetters(["coffeeList"]),
   },
 };
 </script>
 
 <style lang="scss" scoped>
 .content {
+  position: relative;
   padding: 0 24px;
   .loader {
     display: flex;
@@ -79,6 +92,7 @@ export default {
     li {
       margin-bottom: 12px;
       list-style: none;
+      cursor: pointer;
       .addCoffee {
         display: flex;
         img {
