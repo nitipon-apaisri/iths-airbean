@@ -62,11 +62,11 @@ export default new Vuex.Store({
       clearOrder(state) {
          state.makeOrder.forEach((r) => state.users[0].order.push(r));
          localStorage.setItem("users", JSON.stringify(state.users));
-         state.makeOrder = [];
-         state.preOrder = [];
          console.log(JSON.parse(JSON.stringify(state.users[0])));
          state.toggleOrder = false;
          state.toggleBag = false;
+         state.preOrder = [];
+         state.makeOrder.shift();
       },
    },
    actions: {
@@ -126,7 +126,9 @@ export default new Vuex.Store({
          return state.ETA;
       },
       getOrderId(state) {
-         return state.makeOrder[state.makeOrder.length - 1].orderId;
+         if (state.makeOrder.length !== 0) {
+            return state.makeOrder[state.makeOrder.length - 1].orderId;
+         }
       },
       toggleOrderId(state) {
          return state.toggleOrderId;
