@@ -85,4 +85,9 @@ body {
       0 58px 80px -20px rgba(0, 0, 0, 0.07);
   }
 }
+@media screen and (max-width: 375px) {
+  .container {
+    margin-top: 0 !important;
+  }
+}
 </style>
