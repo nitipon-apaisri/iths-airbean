@@ -131,5 +131,8 @@ export default new Vuex.Store({
       toggleOrderId(state) {
          return state.toggleOrderId;
       },
+      coffeeList(state) {
+         return state.coffeeMenu;
+      },
    },
 });
