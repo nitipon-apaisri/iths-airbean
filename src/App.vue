@@ -34,6 +34,22 @@ p {
 body {
   margin: 0 !important;
   background-color: #edf2f7;
+  ::-webkit-scrollbar {
+    width: 1px;
+  }
+  ::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    opacity: 0.5;
+    background-color: #dde0e6;
+    border: 2px solid transparent;
+    border-radius: 9px;
+    background-clip: content-box;
+  }
+  ::-webkit-scrollbar-corner {
+    background: transparent;
+  }
   #app {
     font-family: Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
