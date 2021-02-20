@@ -83,7 +83,6 @@ export default {
 
 <style lang="scss" scoped>
 .content {
-  position: relative;
   padding: 0 24px;
   .loader {
     display: flex;

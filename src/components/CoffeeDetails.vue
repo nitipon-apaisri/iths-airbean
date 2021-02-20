@@ -36,13 +36,16 @@ export default {
 
 <style lang="scss" scoped>
 .coffee-details {
-  width: 100%;
-  height: 159%;
+  width: 375px;
+  height: 560px;
   box-sizing: border-box;
   background-color: rgba($color: #000000, $alpha: 0.85);
   position: absolute;
-  top: -119px;
+  top: 32px;
   left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
   .coffee-detail {
     padding: 12px 16px;
     img {
