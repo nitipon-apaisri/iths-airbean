@@ -91,9 +91,9 @@ p {
   position: absolute;
   box-sizing: border-box;
   padding: 12px 16px;
-  height: 582px;
+  height: 560px;
   top: 0;
-  background-color: rgba($color: #000000, $alpha: 0.3);
+  background-color: rgba($color: #000000, $alpha: 0.85);
   .order-icon {
     width: fit-content;
     margin-left: auto;
