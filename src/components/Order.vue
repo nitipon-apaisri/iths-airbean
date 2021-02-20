@@ -9,6 +9,9 @@
         size="2x"
         class="caret-up"
       />
+      <div class="order-header">
+        <h1>Order</h1>
+      </div>
       <ul>
         <li v-for="(item, index) in order" :key="index">
           <div class="order-item">
@@ -115,6 +118,7 @@ p {
     width: 100%;
     box-sizing: border-box;
     margin-top: 4px;
+
     .caret-up {
       right: 10px;
       top: -20px;
@@ -122,8 +126,13 @@ p {
       color: #fff;
       margin-bottom: -10px;
     }
+    .order-header {
+      margin: 12px 0;
+    }
     ul {
+      max-height: 210px;
       padding: 0 12px;
+      overflow: scroll;
       li {
         list-style: none;
         margin: 0 0 24px 0;
