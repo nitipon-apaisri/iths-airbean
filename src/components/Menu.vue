@@ -56,9 +56,9 @@ export default {
     } else {
       this.loader = false;
     }
-    // if (this.$store.state.users.length == 0) {
-    //   this.$router.push("/register");
-    // }
+    if (this.$store.state.users.length == 0) {
+      this.$router.push("/register");
+    }
   },
   methods: {
     orderCoffee(index) {
