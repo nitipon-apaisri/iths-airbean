@@ -13,8 +13,8 @@
             @click="orderCoffee(index)"
           />
           <div class="coffee">
-            <div class="coffee-title">
-              <h3 @click="toggleCoffeeDetails(index)">{{ item.title }}</h3>
+            <div class="coffee-title" @click="toggleCoffeeDetails(index)">
+              <h3>{{ item.title }}</h3>
               <p>{{ item.desc }}</p>
             </div>
             <div class="coffee-price">
@@ -24,7 +24,11 @@
         </div>
       </li>
     </ul>
-    <CoffeeDetails :index="index" v-if="coffeeDetails" />
+    <CoffeeDetails
+      :index="index"
+      v-if="coffeeDetails"
+      @closeDetails="closeDetails"
+    />
   </div>
 </template>
 
@@ -52,9 +56,9 @@ export default {
     } else {
       this.loader = false;
     }
-    // if (this.$store.state.users.length == 0) {
-    //   this.$router.push("/register");
-    // }
+    if (this.$store.state.users.length == 0) {
+      this.$router.push("/register");
+    }
   },
   methods: {
     orderCoffee(index) {
@@ -65,9 +69,10 @@ export default {
     },
     toggleCoffeeDetails(index) {
       this.index = index;
-      setTimeout(() => {
-        this.coffeeDetails = true;
-      }, 500);
+      this.coffeeDetails = true;
+    },
+    closeDetails() {
+      this.coffeeDetails = false;
     },
   },
   computed: {
