@@ -6,6 +6,7 @@ import Menu from "../views/Menu.vue";
 import Register from "../views/Register.vue";
 import Login from "../views/Login.vue";
 import Status from "../views/Status.vue";
+import Profile from "../views/Profile.vue";
 
 Vue.use(VueRouter);
 
@@ -39,6 +40,11 @@ const routes = [
       path: "/status",
       name: "Status",
       component: Status,
+   },
+   {
+      path: "/profile",
+      name: "Profile",
+      component: Profile,
    },
 ];
 

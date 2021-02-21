@@ -4,7 +4,7 @@
     <div class="register-card">
       <img src="../assets/mini-logo.svg" alt="logo" />
       <div class="title">
-        <h2>Välkommen till AirBean-familjen!</h2>
+        <h2>Välkommen till -familjen!</h2>
         <p>Genom att logga in nedan kan du se din orderhistorik.</p>
       </div>
       <form @submit.prevent="send">
