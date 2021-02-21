@@ -1,6 +1,10 @@
 <template>
   <div class="user-wrapper">
-    <img class="user-img" src="../assets/greta.jpg" alt="user image" />
+    <img
+      class="user-img"
+      src="../assets/mock-profile-pic.svg"
+      alt="user-image"
+    />
     <h1 class="name">{{ this.users[0].name }}</h1>
     <h3 class="email">{{ this.users[0].email }}</h3>
   </div>

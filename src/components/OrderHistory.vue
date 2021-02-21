@@ -2,23 +2,24 @@
   <div class="order-wrapper">
     <h1>Orderhistorik</h1>
     <ul>
-      <li v-for="(order, index) in orderHistory" :key="index">
-        <h3 class="order-id">{{ order.orderId }}</h3>
-        <p class="order-date">{{ orderDate }}</p>
+      <li v-for="(order, index) in getAllOrders" :key="index">
+        <h3 class="order-id">#{{ order.orderId }}</h3>
+        <p class="order-date">{{ order.orderDate }}</p>
         <div class="sum">
           <p class="order-text">total ordersumma</p>
-          <p class="order-sum">{{ orderSum }} kr</p>
+          <p class="order-sum">{{ order.totalCost }} kr</p>
         </div>
       </li>
     </ul>
     <div class="total-wrapper">
       <p class="total-text">Totalt spenderat</p>
-      <p class="total-sum">{{ totalOrderSum }} kr</p>
+      <p class="total-sum">{{ getAllOrdersPrice }} kr</p>
     </div>
   </div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   data() {
     return {
@@ -28,9 +29,12 @@ export default {
     };
   },
   computed: {
-    orderHistory() {
-      return this.$store.state.users[0].order;
-    },
+    ...mapGetters(["getAllOrders", "getAllOrdersPrice"]),
+  },
+  beforeMount() {
+    if (this.$store.state.users.length == 0) {
+      this.$router.push("/register");
+    }
   },
 };
 </script>
