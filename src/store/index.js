@@ -14,6 +14,8 @@ export default new Vuex.Store({
       toggleBag: false,
       toggleOrder: false,
       toggleOrderId: false,
+      allPrice: [],
+      allOrdersPrice: [],
    },
    mutations: {
       register(state, query) {
@@ -53,19 +55,37 @@ export default new Vuex.Store({
       makeOrder(state) {
          let newOrder = new Object();
          newOrder.orderId = Date.now();
+         newOrder.totalCost = state.allPrice.reduce((a, b) => a + b);
          newOrder.orderItems = [];
+         newOrder.orderDate = "";
          state.preOrder.forEach((r) => newOrder.orderItems.push(r));
+         let d = new Date(),
+            month = "" + (d.getMonth() + 1),
+            day = "" + d.getDate(),
+            year = d
+               .getFullYear()
+               .toString()
+               .substr(-2);
+
+         if (month.length < 2) month = "0" + month;
+         if (day.length < 2) day = "0" + day;
+
+         newOrder.orderDate = [year, month, day].join("/").toString();
          state.makeOrder.push(newOrder);
          state.ETA = 10;
          state.toggleOrderId = true;
       },
       clearOrder(state) {
          state.makeOrder.forEach((r) => state.users[0].order.push(r));
+         state.makeOrder.forEach((r) => state.allOrdersPrice.push(r.totalCost));
          localStorage.setItem("users", JSON.stringify(state.users));
          console.log(JSON.parse(JSON.stringify(state.users[0])));
          state.toggleOrder = false;
          state.toggleBag = false;
          state.preOrder = [];
+         console.log(state.allPrice);
+         state.allPrice = [];
+         console.log(state.allPrice);
          state.makeOrder.shift();
       },
    },
@@ -107,9 +127,8 @@ export default new Vuex.Store({
          return filterArr;
       },
       totalCost(state) {
-         let allPrice = [];
-         state.preOrder.forEach((r) => allPrice.push(r.price));
-         return allPrice.reduce((a, b) => a + b);
+         state.preOrder.forEach((r) => state.allPrice.push(r.price));
+         return state.allPrice.reduce((a, b) => a + b);
       },
       toggleBag(state) {
          return state.toggleBag;
@@ -136,18 +155,11 @@ export default new Vuex.Store({
       coffeeList(state) {
          return state.coffeeMenu;
       },
+      getAllOrders(state) {
+         return state.users[0].order;
+      },
+      getAllOrdersPrice(state) {
+         return state.allOrdersPrice.reduce((a, b) => a + b);
+      },
    },
-   methods: {
-      orderDate() {
-         let d = new Date(),
-            month = '' + (d.getMonth() + 1),
-            day = '' + d.getDate(),
-            year = d.getFullYear().toString().substr(-2);
-
-         if (month.length < 2) month = '0' + month;
-         if (day.length < 2) day = '0' + day;
-
-         return [year, month, day].join('/');
-      }
-   }
 });
