@@ -31,6 +31,11 @@ export default {
   computed: {
     ...mapGetters(["getAllOrders", "getAllOrdersPrice"]),
   },
+  beforeMount() {
+    if (this.$store.state.users.length == 0) {
+      this.$router.push("/register");
+    }
+  },
 };
 </script>
 
