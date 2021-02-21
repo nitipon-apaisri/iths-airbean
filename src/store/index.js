@@ -14,7 +14,6 @@ export default new Vuex.Store({
       toggleBag: false,
       toggleOrder: false,
       toggleOrderId: false,
-      allPrice: [],
       allOrdersPrice: [],
    },
    mutations: {
@@ -52,10 +51,10 @@ export default new Vuex.Store({
       toggleOrder(state) {
          state.toggleOrder = !state.toggleOrder;
       },
-      makeOrder(state) {
+      makeOrder(state, totalCost) {
          let newOrder = new Object();
          newOrder.orderId = Date.now();
-         newOrder.totalCost = state.allPrice.reduce((a, b) => a + b);
+         newOrder.totalCost = totalCost;
          newOrder.orderItems = [];
          newOrder.orderDate = "";
          state.preOrder.forEach((r) => newOrder.orderItems.push(r));
@@ -83,9 +82,6 @@ export default new Vuex.Store({
          state.toggleOrder = false;
          state.toggleBag = false;
          state.preOrder = [];
-         console.log(state.allPrice);
-         state.allPrice = [];
-         console.log(state.allPrice);
          state.makeOrder.shift();
       },
    },
@@ -113,8 +109,8 @@ export default new Vuex.Store({
       toggleOrder({ commit }) {
          commit("toggleOrder");
       },
-      makeOrder({ commit }) {
-         commit("makeOrder");
+      makeOrder({ commit }, totalCost) {
+         commit("makeOrder", totalCost);
       },
       clearOrder({ commit }) {
          commit("clearOrder");
@@ -127,8 +123,9 @@ export default new Vuex.Store({
          return filterArr;
       },
       totalCost(state) {
-         state.preOrder.forEach((r) => state.allPrice.push(r.price));
-         return state.allPrice.reduce((a, b) => a + b);
+         let allPrice = [];
+         state.preOrder.forEach((r) => allPrice.push(r.price));
+         return allPrice.reduce((a, b) => a + b);
       },
       toggleBag(state) {
          return state.toggleBag;

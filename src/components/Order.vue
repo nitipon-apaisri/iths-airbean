@@ -71,7 +71,7 @@ export default {
       this.toggleOrder2 = !this.toggleOrder2;
     },
     makeOrder() {
-      this.$store.dispatch("makeOrder");
+      this.$store.dispatch("makeOrder", this.totalCost);
       setTimeout(() => {
         this.$router.push("/status");
       }, 300);
