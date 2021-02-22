@@ -2,7 +2,11 @@
   <div class="order-wrapper">
     <h1>Orderhistorik</h1>
     <ul>
-      <li v-for="(order, index) in getAllOrders" :key="index">
+      <li
+        v-for="(order, index) in getAllOrders"
+        :key="index"
+        @click="toggleOrderDetail(index)"
+      >
         <h3 class="order-id">#{{ order.orderId }}</h3>
         <p class="order-date">{{ order.orderDate }}</p>
         <div class="sum">
@@ -22,11 +26,7 @@
 import { mapGetters } from "vuex";
 export default {
   data() {
-    return {
-      orderDate: "20/03/06",
-      orderSum: "443",
-      totalOrderSum: "443",
-    };
+    return {};
   },
   computed: {
     ...mapGetters(["getAllOrders", "getAllOrdersPrice"]),
@@ -35,6 +35,11 @@ export default {
     if (this.$store.state.users.length == 0) {
       this.$router.push("/register");
     }
+  },
+  methods: {
+    toggleOrderDetail(index) {
+      this.$emit("toggleOrderDetail", index);
+    },
   },
 };
 </script>
@@ -70,6 +75,7 @@ ul {
 li {
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   padding: 5px 0;
+  cursor: pointer;
 }
 
 .order-wrapper {
