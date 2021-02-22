@@ -15,6 +15,8 @@ export default new Vuex.Store({
       toggleOrder: false,
       toggleOrderId: false,
       allOrdersPrice: [],
+      toggelOrderBadge: false,
+      orderIndex: 0,
    },
    mutations: {
       register(state, query) {
@@ -84,6 +86,9 @@ export default new Vuex.Store({
          state.preOrder = [];
          state.makeOrder.shift();
       },
+      getOrderIndex(state, index) {
+         state.orderIndex = index;
+      },
    },
    actions: {
       getCoffee({ state }) {
@@ -114,6 +119,9 @@ export default new Vuex.Store({
       },
       clearOrder({ commit }) {
          commit("clearOrder");
+      },
+      getOrderIndex({ commit }, index) {
+         commit("getOrderIndex", index);
       },
    },
    getters: {
@@ -157,6 +165,24 @@ export default new Vuex.Store({
       },
       getAllOrdersPrice(state) {
          return state.allOrdersPrice.reduce((a, b) => a + b);
+      },
+      getPreOrder(state) {
+         if (state.preOrder.length > 6) {
+            state.preOrder.length = 6;
+            return state.preOrder.length;
+         } else {
+            return state.preOrder.length;
+         }
+      },
+      toggleOrderBadge(state) {
+         if (state.preOrder.length !== 0) {
+            return (state.toggelOrderBadge = true);
+         } else {
+            return state.toggelOrderBadge;
+         }
+      },
+      Index(state) {
+         return state.orderIndex;
       },
    },
 });
