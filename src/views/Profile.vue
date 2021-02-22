@@ -4,9 +4,9 @@
     <div class="profile-container">
       <User />
       <br />
-      <Order-history @toggleOrderDetail="activeOrderDetails(index)" />
+      <Order-history @toggleOrderInfo="activeOrderDetails" />
       <OrderDetails
-        :index="index"
+        :index="Index"
         v-if="toggleOrderDetails"
         @closeOrderDetails="toggleOrderDetail"
       />
@@ -21,18 +21,20 @@ import MainHeader from "../components/MainHeader.vue";
 import OrderHistory from "../components/OrderHistory.vue";
 import OrderDetails from "../components/OrderDetails";
 import User from "../components/User.vue";
+import { mapGetters } from "vuex";
 export default {
   components: { MainHeader, Footer, User, OrderHistory, OrderDetails },
   data() {
     return {
       toggleOrderDetails: false,
-      index: 0,
     };
   },
+  computed: {
+    ...mapGetters(["Index"]),
+  },
   methods: {
-    activeOrderDetails(index) {
+    activeOrderDetails() {
       this.toggleOrderDetails = !this.toggleOrderDetails;
-      this.index = index;
     },
     toggleOrderDetail() {
       this.toggleOrderDetails = !this.toggleOrderDetails;

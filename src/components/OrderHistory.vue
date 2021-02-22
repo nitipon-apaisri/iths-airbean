@@ -38,7 +38,8 @@ export default {
   },
   methods: {
     toggleOrderDetail(index) {
-      this.$emit("toggleOrderDetail", index);
+      this.$store.dispatch("getOrderIndex", index);
+      this.$emit("toggleOrderInfo");
     },
   },
 };
