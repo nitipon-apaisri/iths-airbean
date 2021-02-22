@@ -15,6 +15,7 @@ export default new Vuex.Store({
       toggleOrder: false,
       toggleOrderId: false,
       allOrdersPrice: [],
+      toggelOrderBadge: false,
    },
    mutations: {
       register(state, query) {
@@ -157,6 +158,21 @@ export default new Vuex.Store({
       },
       getAllOrdersPrice(state) {
          return state.allOrdersPrice.reduce((a, b) => a + b);
+      },
+      getPreOrder(state) {
+         if (state.preOrder.length > 6) {
+            state.preOrder.length = 6;
+            return state.preOrder.length;
+         } else {
+            return state.preOrder.length;
+         }
+      },
+      toggleOrderBadge(state) {
+         if (state.preOrder.length !== 0) {
+            return (state.toggelOrderBadge = true);
+         } else {
+            return state.toggelOrderBadge;
+         }
       },
    },
 });

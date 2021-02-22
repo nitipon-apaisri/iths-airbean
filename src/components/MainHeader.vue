@@ -12,6 +12,9 @@
       </div>
       <div class="order-icon" @click="toggleOrderButt" v-if="toggleBag">
         <img src="../assets/bag.svg" alt="bag-icon" />
+        <div class="order-badge" v-if="toggleOrderBadge">
+          <p>{{ getPreOrder }}</p>
+        </div>
       </div>
     </div>
     <Order v-if="toggleOrder" />
@@ -41,7 +44,12 @@ export default {
     },
   },
   computed: {
-    ...mapGetters(["toggleBag", "toggleOrder"]),
+    ...mapGetters([
+      "toggleBag",
+      "toggleOrder",
+      "getPreOrder",
+      "toggleOrderBadge",
+    ]),
   },
 };
 </script>
@@ -77,6 +85,19 @@ export default {
       img {
         width: 16px;
         height: 16px;
+      }
+      .order-badge {
+        position: absolute;
+        padding: 3px 6px;
+        border-radius: 100%;
+        background-color: #e76649;
+        top: 5px;
+        right: 15px;
+        p {
+          color: #fff;
+          font-size: 0.6rem;
+          font-weight: bold;
+        }
       }
     }
   }
